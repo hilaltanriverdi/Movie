@@ -9,19 +9,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by hilal on 3/10/2016.
  */
 @CrossOrigin(value = "http://localhost:63342",maxAge = 3600)
 @RestController
+@Controller
 public class FilmController {
 
     @Autowired
    private FilmRepository filmRepository;
-
-
-
 
     /**
      *save a film.
@@ -75,7 +76,4 @@ public class FilmController {
         return filmList;
 
     }
-
-
-
 }
