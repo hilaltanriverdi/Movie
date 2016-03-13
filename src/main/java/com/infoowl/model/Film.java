@@ -8,6 +8,11 @@ import javax.persistence.Id;
 /**
  * Created by hilal on 3/10/2016.
  */
+
+
+/**
+ * A Film.
+ */
 @Entity
 public class Film {
 
