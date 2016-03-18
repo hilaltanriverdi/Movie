@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <form>
+        Film Name: <input type="text" ng-model="filmName"/></br>
+        Film Type: <input type="text" ng-model="filmType"/></br>
+
+        </br><button ng-click="addFilm()" class="btn-panel-big">Add New Film</button>
+    </form>
+
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $http) {
+        $scope.addFilm = function addFilm(){
+            alert ("adding "+$scope.filmName+" "+ $scope.filmType) ;
+            $http
+                    .post("http://localhost:8080/movies/create", {
+                        filmName: $scope.filmName,
+                        filmType: $scope.filmType
+
+                    })
+                    .success(function(data, status, headers) {
+                        alert("Film added");
+
+                    });
+        }
+    });
+</script>
+
+</body>
+</html>

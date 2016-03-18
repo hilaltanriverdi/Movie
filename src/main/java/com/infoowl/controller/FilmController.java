@@ -3,35 +3,37 @@ package com.infoowl.controller;
 import com.infoowl.model.Film;
 import com.infoowl.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
  * Created by hilal on 3/10/2016.
  */
-
-@Controller
+@CrossOrigin(value = "http://localhost:63342",maxAge = 3600)
+@RestController
 public class FilmController {
 
     @Autowired
    private FilmRepository filmRepository;
 
+
+
+
     /**
      *save a film.
      *@return process message
      */
-    @RequestMapping("/create")
+    @RequestMapping(value = "/movies/create", method = RequestMethod.POST)
     @ResponseBody
-    public String create() {
-        Film film=new Film();
-        film.setFilmName("the it crowd");
-        film.setFilmType("comedi");
+    public Film create( @RequestBody Film film ) {
+
+        System.out.println("create");
         filmRepository.save(film);
-        System.out.println("eklendi");
-        return "successfully added";
+        return film;
     }
 
 
@@ -39,10 +41,10 @@ public class FilmController {
      * delete the film
      * @return process message
      */
-    @RequestMapping("/delete")
+    @RequestMapping(value = "/movies/delete", method = RequestMethod.GET)
     @ResponseBody
-    public String delete(){
-        Film film=new Film(1);
+    public String delete(long id){
+        Film film=new Film(id);
         filmRepository.delete(film);
         return "successfully deleted";
     }
@@ -51,37 +53,28 @@ public class FilmController {
      * update the film
      * @return process message
      */
-    @RequestMapping("/update")
+    @RequestMapping(value = "/movies/update", method = RequestMethod.POST)
     @ResponseBody
-    public String update(){
-        long id=3;
+    public String update(long id,String filmName,String filmType){
         Film film=filmRepository.findOne(id);
-        film.setFilmName("new Name");
-        film.setFilmType("new Type");
+        film.setFilmName(filmName);
+        film.setFilmType(filmType);
         filmRepository.save(film);
         return "successfully updated";
     }
 
     /**
      * list all films
-     * @return film field
+     * @return film list
      */
-    @RequestMapping("/list")
+    @RequestMapping(value = "/movies/list", method = RequestMethod.GET)
     @ResponseBody
-    public String list(){
+    public Iterable<Film> list(){
+        System.out.print("list");
         Iterable<Film> filmList=filmRepository.findAll();
-        StringBuilder builder=new StringBuilder();
-        for (Film film : filmList) {
-            builder.append(film.getFilmId()+" ")
-                    .append(film.getFilmName()+" ")
-                    .append(film.getFilmType()+"/n");
-
-        }
-        return builder.toString();
+        return filmList;
 
     }
-
-
 
 
 
