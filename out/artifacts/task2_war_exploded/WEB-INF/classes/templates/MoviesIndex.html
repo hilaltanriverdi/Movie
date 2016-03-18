@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app="moviesApp">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<head>
+    <script data-require="angular.js@*" data-semver="1.2.15" src="http://code.angularjs.org/1.2.13/angular.js"></script>
+    <script type="text/javascript" src="../src/main/resources/static/js/app.js"></script>
+    <script type="text/javascript" src="../src/main/resources/static/js/angular-animate.js"></script>
+</head>
+<body>
+<div ng-controller="moviesController">
+     
+    <div id="movies-panel" class="fadein fadeout showpanel panel"   ng-show="toggle">
+          
+        <div class="panel-heading">
+               <i class="panel-title-icon fa fa-tasks"></i>
+               <span class="panel-title">Movies</span>
+        </div>
+        <div>
+            <div ng-repeat="movie in movies">
+                   
+                     <input id="{{movie.filmId}}" type="checkbox" value="{{movie.filmId}}"
+                            ng-checked="selection.indexOf(movie.filmId) > -1" ng-click="toggleSelection(movie.filmId)"/>
+                  <input type="text" value="{{movie.filmName}}"/> 
+                    
+            </div>
+              
+        </div>
+    </div>
+     
+    <div id="add-task-panel" ng-hide="toggle">
+          
+        <div>
+               <span>Add Task</span>
+               
+            <div>
+                    
+                <button ng-click="toggle = !toggle">Show All Movies</button>
+                   
+            </div>
+              
+        </div>
+          
+        <div>
+               
+            <div>
+                    
+                <table>
+                         
+                    <tr>
+                              
+                        <td>Movie Name:</td>
+                              
+                            <td><input type="text" ng-model="filmName"/></td>
+                             
+                    </tr>
+
+                       
+                         
+                    <tr>
+                              
+                        <td>
+                            <button ng-click="addTask()" class="btn-panel-big">Add New Movie</button>
+                        </td>
+                             
+                    </tr>
+                        
+                </table>
+                       
+                   
+            </div>
+              
+        </div>
+         
+    </div>
+
+
+</div>
+</body>
+</html>
+
+
+</html>

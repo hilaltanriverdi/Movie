@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <form>
+        Film Id: <input type="text" ng-model="filmId"/></br>
+
+
+        </br><button ng-click="deleteFilm()" class="btn-panel-big">Delete Film</button>
+    </form>
+
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $http) {
+        $scope.deleteFilm = function deleteFilm(){
+            alert ("adding "+$scope.filmId) ;
+            $http
+                    .post("http://localhost:8080/movies/delete", {
+                        filmId: $scope.filmId,
+
+                    })
+                    .success(function(data, status, headers) {
+                        alert("Film deleted");
+
+                    });
+        }
+    });
+</script>
+
+</body>
+</html>
