@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <form>
+        Film Id: <input type="text" ng-model="filmId"/></br>
+        Film Name: <input type="text" ng-model="filmName"/></br>
+        Film Type: <input type="text" ng-model="filmType"/></br>
+
+
+        </br>
+        <button ng-click="updateFilm()" class="btn-panel-big">Update Film</button>
+    </form>
+
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope, $http) {
+        $scope.updateFilm = function updateFilm() {
+            console.log("updating " + $scope.filmId);
+            $http
+                    .get("http://localhost:8080/movies/delete/",{
+                            filmId: $scope.filmId,
+                            filmName: $scope.filmName,
+                            filmType: $scope.filmType
+                })
+                    .then(function (result) {
+                        console.log("Film deleted", result.status, arguments);
+                    }, function () {
+                        console.log("Reject", arguments);
+                    }, function () {
+                        console.log("complete", arguments);
+                    });
+        }
+    });
+</script>
+
+</body>
+</html>
+
