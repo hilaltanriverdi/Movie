@@ -1,6 +1,7 @@
 package com.infoowl.model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,9 +12,9 @@ import java.util.List;
 public class Like {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long likeId;
-    private long likeNumber;
-    private long dislikeNumber;
+    private Long likeId;
+    private Date likeDate;
+    private String likeType;
 
     @ManyToOne @JoinColumn(name = "filmId")
     private Film film;
@@ -25,51 +26,32 @@ public class Like {
     public Like() {
     }
 
-    public Like(long likeId, long likeNumber, long dislikeNumber) {
-        this.likeId = likeId;
-        this.likeNumber = likeNumber;
-        this.dislikeNumber = dislikeNumber;
+    public Like(Date likeDate, String likeType) {
+        this.likeDate = likeDate;
+        this.likeType = likeType;
     }
 
-    public long getLikeId() {
+    public Long getLikeId() {
         return likeId;
     }
 
-    public void setLikeId(long likeId) {
+    public void setLikeId(Long likeId) {
         this.likeId = likeId;
     }
 
-    public long getLikeNumber() {
-        return likeNumber;
+    public Date getLikeDate() {
+        return likeDate;
     }
 
-    public void setLikeNumber(long likeNumber) {
-        this.likeNumber = likeNumber;
+    public void setLikeDate(Date likeDate) {
+        this.likeDate = likeDate;
     }
 
-    public long getDislikeNumber() {
-        return dislikeNumber;
+    public String getLikeType() {
+        return likeType;
     }
 
-    public void setDislikeNumber(long dislikeNumber) {
-        this.dislikeNumber = dislikeNumber;
+    public void setLikeType(String likeType) {
+        this.likeType = likeType;
     }
-
-    public Film getFilm() {
-        return film;
-    }
-
-    public void setFilm(Film film) {
-        this.film = film;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-
 }
