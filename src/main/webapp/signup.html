@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <form>
+        User Name: <input type="text" ng-model="username"/></br>
+        Password: <input type="text" ng-model="password"/></br>
+
+        </br><button ng-click="register()" class="btn-panel-big">Sign up now!</button>
+    </form>
+    <p class="margin medium-small"><a href="login.html">Register Now!</a></p>
+
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $http) {
+        $scope.register = function register(){
+            alert ("adding "+$scope.username+" "+ $scope.password) ;
+            $http
+                    .post("http://localhost:8080/users", {
+                        username: $scope.username,
+                        password: $scope.password
+
+                    })
+                    .then(function(data, status, headers) {
+                        alert("User added");
+
+                    });
+        }
+    });
+</script>
+
+</body>
+</html>
