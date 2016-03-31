@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.6/angular-material.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.6/angular-material.layouts.css">
+    <link  rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material-data-table/0.10.1/md-data-table.min.css">
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+
+    <div layout-gt-sm="row" style="margin-left: 400px;">
+
+        <md-input-container>
+            <label>Film Name</label>
+            <input type="text" ng-model="filmName"/>
+        </md-input-container>
+
+        <md-input-container>
+            <label>Type</label>
+            <input type="text" ng-model="filmType"/>
+        </md-input-container>
+        <md-button class="md-raised md-primary" ng-click="addFilm(filmName,filmType)">Save</md-button>
+        <p>
+    </div>
+
+
+    <md-button ng-click="listFilm()" class="md-raised md-primary">Show Films</md-button>
+    <p>
+
+
+    <div>
+        <md-table-container>
+            <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
+                <tbody md-body>
+
+                <tr md-row ng-repeat="film in films">
+                    <td md-cell>
+                        <md-button ng-click="dislikeFilm(film.id)"...>
+                            <img class="png-icon" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQTS28u51JXf38tL8msqn9hkhPn9Zrx7h4xwiJFn78zSVHW9f-NXg" style="width: 50px; height: 50px;">
+                        </md-button>
+                    </td>
+                    <td md-cell>
+                        <md-button ng-click="likeFilm(film.id)"...>
+                            <img class="png-icon" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTeRa3xuJmoTtV7bcXZfl1i_FOMm6T-C6fwkujcmS11BK9gqmdK" style="width: 50px; height: 50px;">
+                        </md-button>
+                    </td>
+                    <td md-cell>{{ film.filmName }}
+                    </td>
+                    <td md-cell>{{ film.filmType }}
+                    </td>
+                    <td md-cell>
+                        <md-button ng-click="deleteFilm(film.id)" ng-style="{'background-color':'#ff0000'}">DELETE
+                        </md-button>
+                    </td>
+                    <td md-cell>
+                        <md-button ng-click="toggleCustom()" ng-style="{'background-color':'#00ffff'}">EDIT</md-button>
+
+            <span ng-hide="custom">Film Name:
+            <input type="text" ng-model="filmName" id="from"/>
+        </span>
+        <span ng-hide="custom">Film Type:
+            <input type="text" ng-model="filmType" id="to"/>
+        </span>
+                <span ng-hide="custom">
+            <button ng-click="updateFilm(film.id,filmName,filmType)" ng-style="{'background-color':'#00ffff'}"
+                    type="text" id="guncelle">Update
+            </button>
+        </span>
+                        <span ng-show="custom"></span>
+                    </td>
+
+
+                </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+
+    </div>
+
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-animate.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-aria.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.6/angular-material.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material-data-table/0.10.1/md-data-table.js"></script>
+
+
+<script src="app.js"></script>
+</body>
+</html>
+
