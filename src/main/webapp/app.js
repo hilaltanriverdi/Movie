@@ -90,9 +90,6 @@ $scope.selected=[];
         },
 
 
-
-
-
     $scope.toggleCustom= function toggleCustom() {
         $scope.custom = true;
         $scope.toggleCustom = function () {
